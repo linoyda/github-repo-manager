@@ -1,0 +1,39 @@
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongo
+
+  repo-service:
+    build: ./repo-service
+    container_name: repo-service
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+
+  dashboard-service:
+    build: ./dashboard-service
+    container_name: dashboard-service
+    ports:
+      - "3003:3003"
+
+volumes:
+  mongo_data:
