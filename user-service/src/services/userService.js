@@ -7,18 +7,18 @@ const User = require('../models/userModel');
  * @returns {Promise<Object>} - The updated user object.
  */
 const addFavorite = async (username, repoId) => {
-    let user = await User.findOne({ username });
+  let user = await User.findOne({ username });
 
-    if (!user) {
-        user = new User({ username, favorites: [] });
-    }
+  if (!user) {
+    user = new User({ username, favorites: [] });
+  }
 
-    if (!user.favorites.includes(repoId)) {
-        user.favorites.push(repoId);
-        await user.save();
-    }
+  if (!user.favorites.includes(repoId)) {
+    user.favorites.push(repoId);
+    await user.save();
+  }
 
-    return user;
+  return user;
 };
 
 /**
@@ -28,16 +28,16 @@ const addFavorite = async (username, repoId) => {
  * @throws {Error} - If the user is not found.
  */
 const getFavorites = async (username) => {
-    const user = await User.findOne({ username });
+  const user = await User.findOne({ username });
 
-    if (!user) {
-        throw new Error('User not found');
-    }
+  if (!user) {
+    throw new Error('User not found');
+  }
 
-    return user.favorites;
+  return user.favorites;
 };
 
 module.exports = {
-    addFavorite,
-    getFavorites,
+  addFavorite,
+  getFavorites,
 };

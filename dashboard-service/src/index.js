@@ -12,20 +12,22 @@ app.use(errorHandler);
 
 // Route to serve the dashboard UI
 app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'index.html'));
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 // Endpoint to get repository data
 app.get('/api/repositories', async (req, res) => {
-    try {
-        const response = await axios.get('http://repo-service:3001/api/repositories/top?&order=desc&maxRepos=20');
-        res.json(response.data);
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ error: 'Error fetching repository data' });
-    }
+  try {
+    const response = await axios.get(
+      'http://repo-service:3001/api/repositories/top?&order=desc&maxRepos=20'
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error fetching repository data' });
+  }
 });
 
 app.listen(PORT, () => {
-    console.log(`Dashboard Service running on port ${PORT}`);
+  console.log(`Dashboard Service running on port ${PORT}`);
 });

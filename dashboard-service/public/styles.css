@@ -1,11 +1,13 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
-#metrics, #repoChart, #favoritesList {
-    margin: 20px;
+#metrics,
+#repoChart,
+#favoritesList {
+  margin: 20px;
 }
