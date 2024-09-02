@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const errorHandler = require('./utils/errorHandler');
+const logger = require('./utils/logger');
 
 const app = express();
 const PORT = process.env.PORT || 3003;
@@ -23,11 +24,11 @@ app.get('/api/repositories', async (req, res) => {
     );
     res.json(response.data);
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     res.status(500).json({ error: 'Error fetching repository data' });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Dashboard Service running on port ${PORT}`);
+  logger.info(`Dashboard Service running on port ${PORT}`);
 });

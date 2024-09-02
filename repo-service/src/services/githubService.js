@@ -1,4 +1,5 @@
 const axios = require('axios');
+const logger = require('../utils/logger');
 
 const fetchTopRepositories = async (sortOrder = 'desc', maxRepos = 10) => {
   const perPage = 10;
@@ -36,7 +37,7 @@ const fetchTopRepositories = async (sortOrder = 'desc', maxRepos = 10) => {
     // Trim the result to the maximum number of repositories
     return allRepos.slice(0, maxRepos);
   } catch (error) {
-    console.error('Error fetching repositories:', error);
+    logger.error(`Error fetching repositories: ${error}`);
     throw error;
   }
 };

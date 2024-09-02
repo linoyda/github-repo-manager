@@ -1,4 +1,5 @@
 const githubService = require('../services/githubService');
+const logger = require('../utils/logger');
 
 const getTopRepositories = async (req, res, next) => {
   try {
@@ -11,7 +12,7 @@ const getTopRepositories = async (req, res, next) => {
     );
     res.json(repositories);
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     next(error);
   }
 };

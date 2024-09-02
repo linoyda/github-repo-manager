@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const logger = require('./utils/logger');
 
 try {
   const userRoutes = require('./routes/userRoutes');
@@ -17,14 +18,14 @@ try {
 
   mongoose
     .connect(process.env.MONGO_URI)
-    .then(() => console.log('Connected to MongoDB'))
+    .then(() => logger.info('Connected to MongoDB'))
     .catch((err) =>
-      console.error('Could not connect to MongoDB:', err.message)
+      logger.error(`Could not connect to MongoDB: ${err.message}`)
     );
 
   app.listen(PORT, () => {
-    console.log(`User Service running on port ${PORT}`);
+    logger.info(`User Service running on port ${PORT}`);
   });
 } catch (error) {
-  console.error('An error occurred during setup:', error);
+  logger.error(`An error occurred during setup: ${error}`);
 }

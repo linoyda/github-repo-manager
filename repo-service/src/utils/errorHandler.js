@@ -1,16 +1,15 @@
 const { validationResult } = require('express-validator');
+const logger = require('../utils/logger');
 
 const errorHandler = (err, req, res, next) => {
-  console.error(err.message);
+  logger.error(err.message);
   if (err.response) {
     // API response errors
-    res
-      .status(err.response.status)
-      .json({
-        error:
-          err.response.data.message ||
-          'An error occurred with the external service',
-      });
+    res.status(err.response.status).json({
+      error:
+        err.response.data.message ||
+        'An error occurred with the external service',
+    });
   } else if (err.request) {
     // No response received
     res
@@ -24,7 +23,7 @@ const errorHandler = (err, req, res, next) => {
 const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    console.error('validation error occurred');
+    logger.error('validation error occurred');
     return res.status(400).json({ errors: errors.array() });
   }
   next();

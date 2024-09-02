@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const logger = require('./utils/logger');
 
 try {
   const repoRoutes = require('./routes/repoRoutes');
@@ -13,8 +14,8 @@ try {
   app.use(errorHandler);
 
   app.listen(PORT, () => {
-    console.log(`Repository Service running on port ${PORT}`);
+    logger.info(`Repository Service running on port ${PORT}`);
   });
 } catch (error) {
-  console.error('An error occurred during setup:', error);
+  logger.error(`An error occurred during setup: ${error}`);
 }

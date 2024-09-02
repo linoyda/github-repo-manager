@@ -48,6 +48,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       },
     });
   } catch (error) {
-    console.log('Error loading data:', error);
+    console.error(`Error loading data: ${error}`);
   }
 });
