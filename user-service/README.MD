@@ -6,9 +6,11 @@ This service manages user data and favorite repositories.
 
 1. **Install dependencies:**
    `npm install`
-2. **Run the service:**
+2. **Insert your MONGO_URI on .env file**
+3. **Run the service:**
    `npm start`
-3. **Access the service at:**
+4. **Access the service at:**
+   Get USERNAME favorite reposs
    `GET http://localhost:3002/api/users/USERNAME/favorites`
 
    OR add a favorite (using Postman): `POST http://localhost:3002/api/users/USERNAME/favorite`
