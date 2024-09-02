@@ -1,6 +1,12 @@
 const axios = require('axios');
 const logger = require('../utils/logger');
 
+/**
+ * Fetches top repositories, sorted by stargazers amount.
+ * @param {string} sortOrder - Sort order, asc(ending) / desc(ending).
+ * @param {string} maxRepos - The amount of repositories to add, between 1 and 40.
+ * @returns {Promise<Object>} - The fetched repos object
+ */
 const fetchTopRepositories = async (sortOrder = 'desc', maxRepos = 10) => {
   const perPage = 10;
   let allRepos = [];

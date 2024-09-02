@@ -18,7 +18,8 @@ const addUserFavorite = async (req, res, next) => {
 const getUserFavorites = async (req, res, next) => {
   try {
     const { username } = req.params;
-    const favorites = await userService.getFavorites(username);
+    const { filter } = req.query;
+    const favorites = await userService.getFavorites(username, filter);
     res.status(200).json({ favorites });
   } catch (error) {
     if (error.message === 'User not found') {

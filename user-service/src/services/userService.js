@@ -27,14 +27,22 @@ const addFavorite = async (username, repoId) => {
  * @returns {Promise<Array>} - An array of favorite repository IDs.
  * @throws {Error} - If the user is not found.
  */
-const getFavorites = async (username) => {
+const getFavorites = async (username, filter) => {
   const user = await User.findOne({ username });
 
   if (!user) {
     throw new Error('User not found');
   }
 
-  return user.favorites;
+  let favorites = user.favorites;
+  if (!favorites) {
+    return [];
+  }
+
+  if (filter) {
+    favorites = favorites.filter((fav) => fav.includes(filter));
+  }
+  return favorites;
 };
 
 module.exports = {

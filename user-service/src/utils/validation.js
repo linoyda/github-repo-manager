@@ -4,6 +4,7 @@ const validateRepositoryId = [
   check('repoId')
     .isString()
     .notEmpty()
+    .isLength({ min: 3, max: 30 })
     .withMessage('Repository ID must be a non empty string.'),
 ];
 
@@ -14,4 +15,12 @@ const validateUsername = [
     .withMessage('Username must be a string between 3 and 30 characters.'),
 ];
 
-module.exports = { validateRepositoryId, validateUsername };
+const validateFilter = [
+  check('query')
+    .optional({ checkFalsy: true }) // validate only if provided and non falsy.
+    .isString()
+    .isLength({ min: 1, max: 30 })
+    .withMessage('Filter must be a string between 3 and 30 characters.'),
+];
+
+module.exports = { validateRepositoryId, validateUsername, validateFilter };

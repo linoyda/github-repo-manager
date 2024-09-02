@@ -5,6 +5,7 @@ const {
 } = require('../controllers/userController');
 const {
   validateRepositoryId,
+  validateFilter,
   validateUsername,
 } = require('../utils/validation');
 const { handleValidationErrors } = require('../utils/errorHandler');
@@ -22,6 +23,7 @@ router.post(
 router.get(
   '/:username/favorites',
   validateUsername,
+  validateFilter,
   handleValidationErrors,
   getUserFavorites
 );
