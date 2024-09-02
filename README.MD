@@ -36,6 +36,6 @@ MONGO_URI=MONGO_URI
 
 **NOTES:**
  - The dashboard service will be available on http://localhost:3003/
- - Each of repo-service, user-service have additional information in their README.
+ - Each of repo-service, user-service has additional information in their README.
 
 
