@@ -4,7 +4,7 @@ const cors = require('cors');
 
 try {
     const repoRoutes = require('./routes/repoRoutes');
-    const errorHandler = require('./utils/errorHandler');
+    const { errorHandler } = require('./utils/errorHandler');
 
     const app = express();
     const PORT = process.env.PORT || 3001;

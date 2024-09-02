@@ -12,7 +12,7 @@ This service manages user data and favorite repositories.
 3. **Access the service at:**
    ```GET http://localhost:3002/api/users/USERNAME/favorites```
 
-   OR add a favorite (I used postman to construct the request): ```POST http://localhost:3002/api/users/USERNAME/favorite```
+   OR add a favorite (using Postman): ```POST http://localhost:3002/api/users/USERNAME/favorite```
    headers: ```Content-Type``` : ```application/json```
    body: ```{"repoId": "REPOSITORY_ID"}```
 

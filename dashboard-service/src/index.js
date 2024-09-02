@@ -18,7 +18,7 @@ app.get('/dashboard', (req, res) => {
 // Endpoint to get repository data
 app.get('/api/repositories', async (req, res) => {
     try {
-        const response = await axios.get('http://repo-service:3001/api/repositories/top');
+        const response = await axios.get('http://repo-service:3001/api/repositories/top?&order=desc&maxRepos=20');
         res.json(response.data);
     } catch (error) {
         console.log(error)

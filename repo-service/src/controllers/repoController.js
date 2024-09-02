@@ -3,14 +3,9 @@ const githubService = require('../services/githubService');
 const getTopRepositories = async (req, res, next) => {
     try {
         const sortOrder = req.query.order || 'desc'; // Default to 'desc'
+        const maxRepos = req.query.maxRepos || 10; // Default to 10 repos
 
-        // Input validation: only allow 'asc' or 'desc'. 
-        // This is super simple validation. If gets more complex, will be handled with express-validator on external file.
-        if (sortOrder !== 'asc' && sortOrder !== 'desc') {
-            return res.status(400).json({ error: "Invalid sort order. Use 'asc' or 'desc'." });
-        }
-
-        const repositories = await githubService.fetchTopRepositories(sortOrder);
+        const repositories = await githubService.fetchTopRepositories(sortOrder, maxRepos);
         res.json(repositories);
     } catch (error) {
         console.log(error);
