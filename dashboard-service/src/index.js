@@ -21,17 +21,8 @@ app.get('/api/repositories', async (req, res) => {
         const response = await axios.get('http://repo-service:3001/api/repositories/top');
         res.json(response.data);
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Error fetching repository data' });
-    }
-});
-
-// Endpoint to get favorite repositories
-app.get('/api/favorites/:username', async (req, res) => {
-    try {
-        const response = await axios.get(`http://user-service:3002/api/users/${req.params.username}/favorites`);
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: 'Error fetching user favorites' });
     }
 });
 
