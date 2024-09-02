@@ -9,4 +9,6 @@ This service fetches top-rated GitHub repositories using the GitHub API.
 2. **Insert your GitHub token on .env file**
 3. **Run the service:**
    ```npm start```
-4. Service is available on [http://localhost:3001/api/repositories](http://localhost:3001/api/repositories)
+4. **Consume the provided routes:**
+  * Get top repositories (sorted by starts in descending order as defualt) ```curl -X GET "http://localhost:3001/api/repositories/top"```
+  * Get top repositories (sorted by your choice) ```curl -X GET "http://localhost:3001/api/repositories/top?order=asc|desc"```

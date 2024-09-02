@@ -1,11 +1,11 @@
 const axios = require('axios');
 
-const fetchTopRepositories = async () => {
+const fetchTopRepositories = async (sortOrder = 'desc') => {
     const response = await axios.get('https://api.github.com/search/repositories', {
         params: {
             q: 'stars:>1',
             sort: 'stars',
-            order: 'desc',
+            order: sortOrder,
             per_page: 10,
         },
         headers: {

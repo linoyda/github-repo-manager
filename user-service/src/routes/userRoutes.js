@@ -1,8 +1,18 @@
 const express = require('express');
-const userController = require('../controllers/userController');
+const { addUserFavorite, getUserFavorites } = require('../controllers/userController');
+const {validateRepositoryId, validateUsername} = require('../utils/validation')
+const { handleValidationErrors } = require('../utils/errorHandler');
 const router = express.Router();
 
-router.post('/user/:username/favorite', userController.addUserFavorite);
-router.get('/user/:username/favorites', userController.getUserFavorites);
+router.get('/test', (req, res) => {
+    console.log('GET /test route hit');
+    res.send('Test route works!');
+});
+
+
+// Validate both username and provided repositoryId
+router.post('/:username/favorite', validateUsername, validateRepositoryId, handleValidationErrors, addUserFavorite);
+
+router.get('/:username/favorites', validateUsername, handleValidationErrors, getUserFavorites);
 
 module.exports = router;

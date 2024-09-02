@@ -1,23 +1,15 @@
-const User = require('../models/userModel');
+const userService = require('../services/userService');
 
 const addUserFavorite = async (req, res, next) => {
-    const { username } = req.params;
-    const { repoId } = req.body;
-
     try {
-        let user = await User.findOne({ username });
+        const { username } = req.params;
+        const { repoId } = req.body;
 
-        if (!user) {
-            user = new User({ username, favorites: [] });
-        }
-
-        if (!user.favorites.includes(repoId)) {
-            user.favorites.push(repoId);
-            await user.save();
-        }
-
-        res.json(user);
+        console.log(`username: ${username}, repoId: ${repoId}`)
+        const user = await userService.addFavorite(username, repoId);
+        res.status(201).json({ message: 'Repository added to favorites.', user });
     } catch (error) {
+        console.log(`failed to add as favorite: ${error}`);
         next(error);
     }
 };
@@ -26,14 +18,12 @@ const getUserFavorites = async (req, res, next) => {
     const { username } = req.params;
 
     try {
-        const user = await User.findOne({ username });
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-
-        res.json(user.favorites);
+        const favorites = await userService.getFavorites(username);
+        res.status(200).json({ favorites });
     } catch (error) {
+        if (error.message === 'User not found') {
+            return res.status(404).json({ error: error.message });
+        }
         next(error);
     }
 };
