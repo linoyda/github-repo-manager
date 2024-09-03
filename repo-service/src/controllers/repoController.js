@@ -1,6 +1,7 @@
 const githubService = require('../services/githubService');
 const logger = require('../utils/logger');
 
+// Fetch top repositories, according to given limit (maxRepos) and sorted by their stargazers (sortOrder)
 const getTopRepositories = async (req, res, next) => {
   try {
     const sortOrder = req.query.order || 'desc'; // Default to 'desc'

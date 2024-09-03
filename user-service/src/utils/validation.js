@@ -16,7 +16,7 @@ const validateUsername = [
 ];
 
 const validateFilter = [
-  check('query')
+  check('filter')
     .optional({ checkFalsy: true }) // validate only if provided and non falsy.
     .isString()
     .isLength({ min: 1, max: 30 })

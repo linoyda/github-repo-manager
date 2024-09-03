@@ -17,6 +17,4 @@ This service manages user data and favorite repositories.
    headers: `Content-Type` : `application/json`
    body: `{"repoId": "REPOSITORY_ID"}`
 
-   
-
    NOTE that username should be a string between 3-30 chars, and repoId should be a non-empty string.

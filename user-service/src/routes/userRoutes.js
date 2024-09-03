@@ -11,7 +11,7 @@ const {
 const { handleValidationErrors } = require('../utils/errorHandler');
 const router = express.Router();
 
-// Validate both username and provided repositoryId
+// Route for adding a favorite repo to a username. validate username, repoid
 router.post(
   '/:username/favorite',
   validateUsername,
@@ -20,6 +20,7 @@ router.post(
   addUserFavorite
 );
 
+// Route for fetching favorite repos of a username. validate username, filter
 router.get(
   '/:username/favorites',
   validateUsername,

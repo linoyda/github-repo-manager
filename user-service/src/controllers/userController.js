@@ -1,6 +1,7 @@
 const userService = require('../services/userService');
 const logger = require('../utils/logger');
 
+// Adds a favorite repoId to a given username
 const addUserFavorite = async (req, res, next) => {
   try {
     const { username } = req.params;
@@ -15,6 +16,7 @@ const addUserFavorite = async (req, res, next) => {
   }
 };
 
+// Fetches a given username favorite repos (if exist) according to an optional filter
 const getUserFavorites = async (req, res, next) => {
   try {
     const { username } = req.params;
