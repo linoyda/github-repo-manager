@@ -12,7 +12,7 @@ This project is a Node.js-based backend service that interacts with the GitHub R
 
 ### Tech Stack
 
-- **Backend**: Node.js, Express.js, Axios
+- **Backend**: Node.js, Express.js, Axios, Winston, express-validator
 - **Frontend**: HTML, CSS, JavaScript (with Fetch API)
 - **Database**: MongoDB (for storing user favorites)
 - **Containerization**: Docker, Docker Compose
